@@ -133,9 +133,9 @@ export async function seedDemoData(userId: string) {
   // 2. Locations
   if (dev?.id) {
     await supabase.from('locations').insert([
-      { device_id: dev.id, latitude: 28.6120, longitude: 77.2070, accuracy: 20, is_offline: false },
-      { device_id: dev.id, latitude: 28.6128, longitude: 77.2080, accuracy: 18, is_offline: false },
-      { device_id: dev.id, latitude: 28.6139, longitude: 77.2090, accuracy: 12, is_offline: false },
+      { device_id: dev.id, latitude: 35.6762, longitude: 139.6503, accuracy: 20, is_offline: false },
+      { device_id: dev.id, latitude: 35.6770, longitude: 139.6515, accuracy: 18, is_offline: false },
+      { device_id: dev.id, latitude: 35.6780, longitude: 139.6525, accuracy: 12, is_offline: false },
     ]);
   }
 
