@@ -1,0 +1,262 @@
+/* ============================================================
+   PhoneGuard – Global Styles
+   Dark-tech security aesthetic
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+/* ── Design Tokens ── */
+:root {
+  /* Core Palette — Deep Navy Indigo */
+  --clr-bg:          #080b14;
+  --clr-surface:     #0e1221;
+  --clr-surface-2:   #141929;
+  --clr-surface-3:   #1c2237;
+  --clr-border:      rgba(255, 255, 255, 0.07);
+  --clr-border-glow: rgba(120, 119, 230, 0.30);
+
+  /* Accent Palette — Indigo / Violet / Amber */
+  --clr-accent:      #6c63ff;
+  --clr-accent-dim:  #3730a3;
+  --clr-danger:      #f43f5e;
+  --clr-danger-dim:  #7f1d33;
+  --clr-warn:        #f59e0b;
+  --clr-success:     #10b981;
+  --clr-success-dim: #064e3b;
+  --clr-purple:      #a78bfa;
+  --clr-purple-dim:  #4c1d95;
+  --clr-satellite:   #fbbf24;
+
+  /* Text */
+  --clr-text-primary:   #e2e8f0;
+  --clr-text-secondary: #94a3b8;
+  --clr-text-muted:     #475569;
+
+  /* Glow Effects */
+  --glow-accent:  0 0 22px rgba(108, 99, 255, 0.40), 0 0 64px rgba(108, 99, 255, 0.12);
+  --glow-danger:  0 0 20px rgba(244, 63, 94, 0.45),  0 0 60px rgba(244, 63, 94, 0.14);
+  --glow-success: 0 0 20px rgba(16, 185, 129, 0.35);
+  --glow-purple:  0 0 20px rgba(167, 139, 250, 0.38);
+
+  /* Spacing */
+  --radius-sm:   6px;
+  --radius-md:   12px;
+  --radius-lg:   18px;
+  --radius-xl:   24px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --trans-fast:   0.15s ease;
+  --trans-normal: 0.25s ease;
+  --trans-slow:   0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Glassmorphism */
+  --glass-bg:     rgba(13, 17, 23, 0.75);
+  --glass-border: rgba(99, 197, 255, 0.12);
+  --glass-blur:   24px;
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--clr-bg);
+  color: var(--clr-text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  background-image:
+    radial-gradient(ellipse 90% 55% at 50% -15%, rgba(108, 99, 255, 0.11) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 40% at 85% 85%,  rgba(167, 139, 250, 0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 35% 30% at 10% 70%,  rgba(251, 191, 36, 0.04) 0%, transparent 55%);
+}
+
+/* ── Typography ── */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.mono { font-family: 'JetBrains Mono', monospace; }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--clr-surface); }
+::-webkit-scrollbar-thumb { background: var(--clr-surface-3); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--clr-accent); }
+
+/* ── Glass Card ── */
+.glass-card {
+  background: rgba(14, 18, 33, 0.80);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid rgba(108, 99, 255, 0.13);
+  border-radius: var(--radius-lg);
+}
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  border: none;
+  transition: all var(--trans-normal);
+  text-decoration: none;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.05);
+  opacity: 0;
+  transition: opacity var(--trans-fast);
+}
+.btn:hover::before { opacity: 1; }
+
+.btn-primary {
+  background: linear-gradient(135deg, #6c63ff, #4f46e5);
+  color: #fff;
+  box-shadow: 0 4px 18px rgba(108, 99, 255, 0.38);
+}
+.btn-primary:hover { box-shadow: var(--glow-accent); transform: translateY(-1px); }
+
+.btn-danger {
+  background: linear-gradient(135deg, #f43f5e, #be123c);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(244, 63, 94, 0.35);
+}
+.btn-danger:hover { box-shadow: var(--glow-danger); transform: translateY(-1px); }
+
+.btn-ghost {
+  background: transparent;
+  border: 1px solid var(--clr-border);
+  color: var(--clr-text-secondary);
+}
+.btn-ghost:hover {
+  border-color: var(--clr-accent);
+  color: var(--clr-accent);
+  background: rgba(108, 99, 255, 0.07);
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.35);
+}
+.btn-success:hover { box-shadow: var(--glow-success); transform: translateY(-1px); }
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* ── Form Controls ── */
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--clr-text-secondary);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+.form-input, .form-select, .form-textarea {
+  background: var(--clr-surface-2);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-md);
+  color: var(--clr-text-primary);
+  font-family: inherit;
+  font-size: 14px;
+  padding: 11px 14px;
+  transition: border-color var(--trans-fast), box-shadow var(--trans-fast);
+  width: 100%;
+  outline: none;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--clr-accent);
+  box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.15);
+}
+.form-input::placeholder { color: var(--clr-text-muted); }
+.form-select { cursor: pointer; }
+.form-select option { background: var(--clr-surface-2); }
+
+/* ── Status Badge ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.badge-active   { background: rgba(16, 185, 129, 0.13);  color: var(--clr-success); border: 1px solid rgba(16, 185, 129, 0.28); }
+.badge-danger   { background: rgba(244, 63, 94, 0.13);   color: var(--clr-danger);  border: 1px solid rgba(244, 63, 94, 0.28); }
+.badge-warn     { background: rgba(245, 158, 11, 0.13);  color: var(--clr-warn);    border: 1px solid rgba(245, 158, 11, 0.28); }
+.badge-info     { background: rgba(108, 99, 255, 0.13);  color: var(--clr-accent);  border: 1px solid rgba(108, 99, 255, 0.28); }
+.badge-purple   { background: rgba(167, 139, 250, 0.13); color: var(--clr-purple);  border: 1px solid rgba(167, 139, 250, 0.28); }
+.badge-sat      { background: rgba(251, 191, 36, 0.13);  color: var(--clr-satellite); border: 1px solid rgba(251, 191, 36, 0.28); }
+
+/* ── Pulse dot ── */
+.pulse-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+}
+.pulse-dot::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  opacity: 0.5;
+  animation: pulse-ring 1.5s ease-out infinite;
+}
+@keyframes pulse-ring {
+  0%   { transform: scale(1); opacity: 0.5; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+/* ── SOS Glow Animation ── */
+@keyframes sos-pulse {
+  0%, 100% { box-shadow: var(--glow-danger), 0 0 0 0 rgba(255, 69, 96, 0.5); }
+  50%       { box-shadow: var(--glow-danger), 0 0 0 16px rgba(255, 69, 96, 0); }
+}
+.sos-active { animation: sos-pulse 1.2s ease infinite; }
+
+/* ── Grid Utilities ── */
+.grid { display: grid; }
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.gap-2 { gap: 8px; }
+.gap-3 { gap: 12px; }
+.gap-4 { gap: 16px; }
+.gap-6 { gap: 24px; }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  body { font-size: 14px; }
+}
+
+/* ── Leaflet overrides ── */
+.leaflet-container { background: #090c1a !important; border-radius: var(--radius-lg); }
+.leaflet-tile { filter: invert(1) hue-rotate(200deg) brightness(0.80) saturate(1.1); }
